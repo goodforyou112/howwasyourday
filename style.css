@@ -1,0 +1,470 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
+:root {
+  --primary: #8b5cf6;
+  --primary-hover: #7c3aed;
+  /* 밝은 배경 테마 설정 */
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --text-main: #1e293b;
+  --text-dim: #64748b;
+  --accent-blue: #3b82f6;
+  --accent-green: #10b981;
+  --accent-red: #ef4444;
+  --accent-yellow: #f59e0b;
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+/* 전체 앱 레이아웃 */
+.main-app {
+  width: 100%;
+  max-width: 1200px;
+  height: calc(100vh - 4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* 상단 입력 영역 */
+.header-input-section {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  background: linear-gradient(to right, var(--primary), #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+  padding: 0 1rem;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+#current-time {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: 1px;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+input[type="text"] {
+  width: 100%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  padding: 1.2rem 1.5rem;
+  color: var(--text-main);
+  font-size: 1.1rem;
+  outline: none;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+input[type="text"]:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+  background: white;
+}
+
+.add-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.add-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* 카테고리 그리드 레이아웃 */
+.categories-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  flex: 1;
+  overflow: hidden;
+}
+
+.category-column {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  height: 100%;
+  transition: all 0.3s;
+  box-shadow: var(--shadow-lg);
+}
+
+.category-column:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.category-header h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.category-badge {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+/* 할 일 목록 스타일 */
+.todo-list-categorized {
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 0.5rem;
+}
+
+.todo-item {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  border-radius: 14px;
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.3s;
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.todo-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: rgba(139, 92, 246, 0.2);
+}
+
+.todo-main {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.priority-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.prio-high { color: var(--accent-red); background: rgba(239, 68, 68, 0.1); }
+.prio-medium { color: var(--accent-yellow); background: rgba(245, 158, 11, 0.1); }
+.prio-low { color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+
+.todo-text {
+  flex: 1;
+  font-size: 0.95rem;
+  word-break: break-all;
+  color: var(--text-main);
+}
+
+.todo-item.done .todo-text {
+  text-decoration: line-through;
+  color: var(--text-dim);
+}
+
+.todo-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.action-btn {
+  background: #f1f5f9;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: var(--text-dim);
+  padding: 0.2rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-btn:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* 뽀모도로 플로팅 위젯 (밝은 테마) */
+.pomodoro-widget {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  width: 180px;
+  background: white;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 20px;
+  padding: 1.2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 100;
+  animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes bounceIn {
+  from { opacity: 0; transform: translateY(50px) scale(0.8); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.pomodoro-widget #timer {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.pomodoro-widget .status {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-bottom: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.widget-controls {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.widget-btn {
+  background: rgba(139, 92, 246, 0.05);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  color: var(--primary);
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.widget-btn:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* 스크롤바 커스텀 */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* 반응형 */
+@media (max-width: 900px) {
+  .categories-container {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+}
+
+/* 기분 플로팅 위젯 (오른쪽 하단) */
+.mood-widget {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: white;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 20px;
+  padding: 1.2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 100;
+  animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.mood-widget .status {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-bottom: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.mood-icons {
+  display: flex;
+  flex-direction: column; /* 세로로 변경 */
+  gap: 0.5rem;
+}
+
+.mood-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0.3rem;
+  border-radius: 50%;
+}
+
+.mood-btn:hover {
+  transform: scale(1.2);
+  background: rgba(139, 92, 246, 0.1);
+}
+
+/* 주간 기록 섹션 스타일 */
+.weekly-history {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 1.2rem;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.weekly-history h3 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--text-dim);
+}
+
+.week-days {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.5rem;
+}
+
+.day-slot {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  background: white;
+  padding: 0.8rem;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.delete-mood-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--text-dim);
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: all 0.2s;
+  line-height: 1;
+  z-index: 5;
+}
+
+.delete-mood-btn:hover {
+  opacity: 1;
+  color: var(--accent-red);
+  transform: scale(1.2);
+}
+
+.day-slot span {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.day-mood {
+  font-size: 1.4rem;
+}
+
+.mood-btn.selected {
+  background: rgba(139, 92, 246, 0.2);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+}

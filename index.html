@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premium Tasks - 스마트 분류 & 집중</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#ffffff" />
+  <!-- PWA 앱 아이콘 및 설치 버튼을 지원하기 위한 스크립트 -->
+  <link rel="manifest" href="/manifest.webmanifest" />
+</head>
+<body>
+  <main class="main-app">
+    <header class="header-input-section">
+      <h1>🌊 오늘의 빛나는 조각들</h1>
+      <div class="header-info">
+        <span id="current-date"></span>
+        <span id="current-time"></span>
+      </div>
+      <div class="input-wrapper">
+        <input type="text" id="todo-input" placeholder="새로운 할 일을 입력하세요... (자동으로 분류됩니다)" autofocus />
+        <button id="add-todo" class="add-btn">추가</button>
+      </div>
+    </header>
+
+    <!-- 카테고리별 컬럼 컨테이너 -->
+    <section class="categories-container">
+      <!-- 공부 섹션 -->
+      <div class="category-column" id="category-study">
+        <header class="category-header">
+          <h2>🌱 성장의 기록</h2>
+          <span class="category-badge" id="count-study">0</span>
+        </header>
+        <ul class="todo-list-categorized" id="list-study"></ul>
+      </div>
+
+      <!-- 일상 섹션 -->
+      <div class="category-column" id="category-daily">
+        <header class="category-header">
+          <h2>🌿 일상의 온도</h2>
+          <span class="category-badge" id="count-daily">0</span>
+        </header>
+        <ul class="todo-list-categorized" id="list-daily"></ul>
+      </div>
+
+      <!-- 기타 섹션 -->
+      <div class="category-column" id="category-other">
+        <header class="category-header">
+          <h2>✨ 소중한 조각</h2>
+          <span class="category-badge" id="count-other">0</span>
+        </header>
+        <ul class="todo-list-categorized" id="list-other"></ul>
+      </div>
+    </section>
+
+    <!-- 주간 기분 기록 섹션 -->
+    <section class="weekly-history" id="weekly-history">
+      <h3>📅 이번 주 나의 감정 조각들</h3>
+      <div class="week-days">
+        <div class="day-slot" data-day="월"><span>월</span><div class="day-mood">-</div><button class="delete-mood-btn" title="삭제">×</button></div>
+        <div class="day-slot" data-day="화"><span>화</span><div class="day-mood">-</div><button class="delete-mood-btn" title="삭제">×</button></div>
+        <div class="day-slot" data-day="수"><span>수</span><div class="day-mood">-</div><button class="delete-mood-btn" title="삭제">×</button></div>
+        <div class="day-slot" data-day="목"><span>목</span><div class="day-mood">-</div><button class="delete-mood-btn" title="삭제">×</button></div>
+        <div class="day-slot" data-day="금"><span>금</span><div class="day-mood">-</div><button class="delete-mood-btn" title="삭제">×</button></div>
+        <div class="day-slot" data-day="토"><span>토</span><div class="day-mood">-</div><button class="delete-mood-btn" title="삭제">×</button></div>
+        <div class="day-slot" data-day="일"><span>일</span><div class="day-mood">-</div><button class="delete-mood-btn" title="삭제">×</button></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 뽀모도로 플로팅 위젯 -->
+  <aside class="pomodoro-widget" id="pomodoro-widget">
+    <div class="status" id="pomodoro-status">집중 시간</div>
+    <div id="timer">25:00</div>
+    <div class="widget-controls">
+      <button class="widget-btn" id="start-timer">시작</button>
+      <button class="widget-btn" id="reset-timer">리셋</button>
+    </div>
+  </aside>
+  <!-- 기분 기록 플로팅 위젯 -->
+  <aside class="mood-widget" id="mood-widget">
+    <div class="status">오늘의 기분</div>
+    <div class="mood-icons">
+      <button class="mood-btn" data-mood="기쁨" title="기쁨">😄</button>
+      <button class="mood-btn" data-mood="슬픔" title="슬픔">😢</button>
+      <button class="mood-btn" data-mood="당황" title="당황">😳</button>
+      <button class="mood-btn" data-mood="지침" title="지침">😫</button>
+      <button class="mood-btn" data-mood="피곤" title="피곤">😴</button>
+    </div>
+  </aside>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
