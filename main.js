@@ -17,6 +17,12 @@ const pomodoroStatus = document.getElementById('pomodoro-status');
 const dateDisplay = document.getElementById('current-date');
 const timeDisplay = document.getElementById('current-time');
 
+// 기분 선택 모달 관련 요소
+const moodModal = document.getElementById('mood-modal');
+const closeMoodModalBtn = document.getElementById('close-mood-modal');
+const moodOptionBtns = document.querySelectorAll('.mood-option-btn');
+let activeDay = null; // 현재 어떤 요일을 선택 중인지 추적
+
 // 2.1 실시간 날짜 및 시간 업데이트
 const updateDateTime = () => {
   const now = new Date();
@@ -215,13 +221,11 @@ todoInput.addEventListener('keypress', (e) => {
 startTimerBtn.addEventListener('click', startTimer);
 resetTimerBtn.addEventListener('click', resetTimer);
 
-// 6. 오늘의 기분 및 주간 기록 관리 로직
-const moodBtns = document.querySelectorAll('.mood-btn');
+// 6. 주간 기록 및 기분 팝업 관리 로직
 const daySlots = document.querySelectorAll('.day-slot');
 
 // 요일별 한글 매핑 (일:0, 월:1, 화:2, 수:3, 목:4, 금:5, 토:6)
 const dayMap = ['일', '월', '화', '수', '목', '금', '토'];
-const currentDay = dayMap[new Date().getDay()]; // 오늘의 요일
 
 // 로컬 스토리지에서 주간 기분 데이터 가져오기
 let weeklyMoods = JSON.parse(localStorage.getItem('weeklyMoods')) || {};
@@ -233,33 +237,47 @@ const updateWeeklyUI = () => {
     const moodEl = slot.querySelector('.day-mood');
     moodEl.textContent = weeklyMoods[day] || '-';
   });
-
-  // 오늘의 버튼 상태 표시 (저장된 이모지와 버튼의 텍스트 비교)
-  const todayMood = weeklyMoods[currentDay];
-  moodBtns.forEach(btn => {
-    btn.classList.toggle('selected', btn.textContent === todayMood);
-  });
 };
 
-moodBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const selectedMood = btn.textContent; // 이모지를 직접 가져옴
-    
-    // 오늘의 기분 업데이트
-    weeklyMoods[currentDay] = selectedMood;
-    
-    // 로컬 스토리지 저장
-    localStorage.setItem('weeklyMoods', JSON.stringify(weeklyMoods));
-    
-    // UI 동기화
-    updateWeeklyUI();
+// 요일 슬롯 클릭 시 모달 열기
+daySlots.forEach(slot => {
+  slot.addEventListener('click', () => {
+    activeDay = slot.dataset.day;
+    moodModal.style.display = 'flex';
   });
 });
 
-// 삭제 버튼 이벤트 바인딩
+// 기분 옵션 선택 시 저장 및 닫기
+moodOptionBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (activeDay) {
+      const selectedMood = btn.textContent;
+      weeklyMoods[activeDay] = selectedMood;
+      localStorage.setItem('weeklyMoods', JSON.stringify(weeklyMoods));
+      updateWeeklyUI();
+      moodModal.style.display = 'none';
+      activeDay = null;
+    }
+  });
+});
+
+// 모달 닫기 버튼 및 배경 클릭 시 닫기
+closeMoodModalBtn.addEventListener('click', () => {
+  moodModal.style.display = 'none';
+  activeDay = null;
+});
+
+window.addEventListener('click', (e) => {
+  if (e.target === moodModal) {
+    moodModal.style.display = 'none';
+    activeDay = null;
+  }
+});
+
+// 삭제 버튼 이벤트 바인딩 (이벤트 버블링 주의)
 document.querySelectorAll('.delete-mood-btn').forEach(btn => {
   btn.addEventListener('click', (e) => {
-    e.stopPropagation(); // 부모 요소로의 이벤트 전파 방지
+    e.stopPropagation(); // 부모(day-slot)의 클릭 이벤트 방지
     const day = btn.parentElement.dataset.day;
     
     if (weeklyMoods[day]) {

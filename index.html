@@ -67,28 +67,32 @@
         <div class="day-slot" data-day="일"><span>일</span><div class="day-mood">-</div><button class="delete-mood-btn" title="삭제">×</button></div>
       </div>
     </section>
+
+    <!-- 뽀모도로 타이머 (이전됨) -->
+    <div class="pomodoro-widget-inline" id="pomodoro-widget">
+      <div class="status" id="pomodoro-status">집중 시간</div>
+      <div id="timer">25:00</div>
+      <div class="widget-controls">
+        <button class="widget-btn" id="start-timer">시작</button>
+        <button class="widget-btn" id="reset-timer">리셋</button>
+      </div>
+    </div>
   </main>
 
-  <!-- 뽀모도로 플로팅 위젯 -->
-  <aside class="pomodoro-widget" id="pomodoro-widget">
-    <div class="status" id="pomodoro-status">집중 시간</div>
-    <div id="timer">25:00</div>
-    <div class="widget-controls">
-      <button class="widget-btn" id="start-timer">시작</button>
-      <button class="widget-btn" id="reset-timer">리셋</button>
+  <!-- 기분 선택 모달 (팝업) -->
+  <div id="mood-modal" class="modal-overlay">
+    <div class="modal-content">
+      <h3>오늘의 기분 조각 선택</h3>
+      <div class="mood-options">
+        <button class="mood-option-btn">😄</button>
+        <button class="mood-option-btn">😢</button>
+        <button class="mood-option-btn">😳</button>
+        <button class="mood-option-btn">😫</button>
+        <button class="mood-option-btn">😴</button>
+      </div>
+      <button id="close-mood-modal" class="modal-close-btn">닫기</button>
     </div>
-  </aside>
-  <!-- 기분 기록 플로팅 위젯 -->
-  <aside class="mood-widget" id="mood-widget">
-    <div class="status">오늘의 기분</div>
-    <div class="mood-icons">
-      <button class="mood-btn" data-mood="기쁨" title="기쁨">😄</button>
-      <button class="mood-btn" data-mood="슬픔" title="슬픔">😢</button>
-      <button class="mood-btn" data-mood="당황" title="당황">😳</button>
-      <button class="mood-btn" data-mood="지침" title="지침">😫</button>
-      <button class="mood-btn" data-mood="피곤" title="피곤">😴</button>
-    </div>
-  </aside>
+  </div>
 
   <script type="module" src="/main.js"></script>
 </body>

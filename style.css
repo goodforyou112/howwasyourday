@@ -270,240 +270,127 @@ input[type="text"]:focus {
   border-color: var(--primary);
 }
 
-/* 뽀모도로 플로팅 위젯 (상단 좌측 배치 및 축소) */
-.pomodoro-widget {
-  position: fixed;
-  top: 1.2rem;
-  left: 1rem;
-  width: 120px;
-  background: rgba(255, 255, 255, 0.85); /* 투명도 증가 */
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  border-radius: 16px;
-  padding: 0.6rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 1000;
-  animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.pomodoro-widget #timer {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 0.2rem;
-  font-variant-numeric: tabular-nums;
-}
-
-.pomodoro-widget .status {
-  font-size: 0.65rem;
-  color: var(--text-dim);
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.5px;
-}
-
-.widget-controls {
-  display: flex;
-  gap: 0.3rem;
-}
-
-.widget-btn {
-  background: rgba(139, 92, 246, 0.1);
-  border: 1px solid rgba(139, 92, 246, 0.2);
-  color: var(--primary);
-  padding: 0.2rem 0.4rem;
-  border-radius: 6px;
-  font-size: 0.6rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.widget-btn:hover {
-  background: var(--primary);
-  color: white;
-}
-
-/* 스크롤바 커스텀 */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-
-/* 반응형 */
-@media (max-width: 900px) {
-  .categories-container {
-    grid-template-columns: 1fr;
-    overflow-y: visible; /* 메인 앱에서 스크롤 제어 */
-  }
-  .main-app {
-    height: auto;
-  }
-}
-
-/* 초소형 모바일 기기 최적화 (600px 이하) */
-@media (max-width: 600px) {
-  body {
-    padding: 1rem 0.5rem;
-  }
-  
-  /* 위젯 모바일에서 상단 간격 미세 조정 */
-  .pomodoro-widget, .mood-widget {
-    top: 0.8rem;
-  }
-  
-  .pomodoro-widget {
-    left: 0.5rem;
-    width: 100px;
-  }
-  
-  .mood-widget {
-    right: 0.5rem;
-  }
-
-  h1 {
-    font-size: 1.6rem;
-    margin-top: 3.5rem; /* 위젯과 겹치지 않게 여백 추가 */
-  }
-
-  .header-info {
-    font-size: 0.75rem;
-    margin-bottom: 1rem;
-    flex-direction: row; /* 다시 가로로 */
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  input[type="text"] {
-    padding: 1rem 1.2rem;
-    font-size: 1rem;
-  }
-
-  .add-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  .category-column {
-    padding: 1.2rem;
-  }
-
-  .weekly-history {
-    padding: 1rem 0.5rem;
-  }
-
-  .week-days {
-    gap: 0.3rem;
-  }
-
-  .day-slot {
-    padding: 0.5rem 0.2rem;
-  }
-
-  .day-slot span {
-    font-size: 0.65rem;
-  }
-
-  .day-mood {
-    font-size: 1.1rem;
-  }
-
-  /* 플로팅 위젯 모바일 대응: 좀 더 작게 및 위치 조정 */
-  .pomodoro-widget {
-    left: 1rem;
-    bottom: 1rem;
-    width: 140px;
-    padding: 0.8rem;
-  }
-  
-  .pomodoro-widget #timer {
-    font-size: 1.5rem;
-  }
-
-  .mood-widget {
-    right: 1rem;
-    bottom: 1rem;
-    padding: 0.8rem;
-  }
-
-  .mood-btn {
-    font-size: 1.2rem;
-  }
-}
-
-/* 기분 플로팅 위젯 (상단 우측 배치 및 축소) */
-.mood-widget {
-  position: fixed;
-  top: 1.2rem;
-  right: 1rem;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  border-radius: 16px;
-  padding: 0.5rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 1000;
-  animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.mood-widget .status {
-  font-size: 0.6rem;
-  color: var(--text-dim);
-  margin-bottom: 0.4rem;
-  letter-spacing: 0.5px;
-}
-
-.mood-icons {
-  display: flex;
-  flex-direction: row; /* 다시 가로로 변경 (슬림하게) */
-  gap: 0.3rem;
-}
-
-.mood-btn {
-  background: none;
-  border: none;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  padding: 0.2rem;
-  border-radius: 50%;
-}
-
-.mood-btn:hover {
-  transform: scale(1.2);
-  background: rgba(139, 92, 246, 0.1);
-}
-
-/* 주간 기록 섹션 스타일 */
-.weekly-history {
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  padding: 1.2rem;
+/* 뽀모도로 타이머 (인라인 스타일) */
+.pomodoro-widget-inline {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  text-align: center;
-}
-
-.weekly-history h3 {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  color: var(--text-dim);
-}
-
-.week-days {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-lg);
   display: flex;
-  justify-content: space-around;
-  gap: 0.5rem;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.8s ease-out;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.pomodoro-widget-inline #timer {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.pomodoro-widget-inline .status {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+/* 기분 선택 모달 (팝업) 스타일 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* 배경 어둡게 */
+  backdrop-filter: blur(5px);
+  display: none; /* 기본 숨김 */
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeInOverlay 0.3s ease-out;
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 30px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  transform: scale(1);
+  animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content h3 {
+  margin-bottom: 1.5rem;
+  color: var(--text-main);
+  font-size: 1.3rem;
+}
+
+.mood-options {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.mood-option-btn {
+  background: #f8fafc;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 2.5rem;
+  padding: 0.8rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mood-option-btn:hover {
+  transform: scale(1.2) translateY(-5px);
+  background: var(--primary);
+  box-shadow: 0 10px 20px rgba(139, 92, 246, 0.2);
+}
+
+.modal-close-btn {
+  background: #f1f5f9;
+  border: none;
+  color: var(--text-dim);
+  padding: 0.8rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.modal-close-btn:hover {
+  background: #e2e8f0;
+  color: var(--text-main);
+}
+
+/* 요일 슬롯 클릭 가능 스타일 */
 .day-slot {
   position: relative;
   flex: 1;
@@ -515,46 +402,22 @@ input[type="text"]:focus {
   padding: 0.8rem;
   border-radius: 12px;
   border: 1px solid rgba(0, 0, 0, 0.03);
+  cursor: pointer; /* 클릭 가능 표시 */
+  transition: all 0.3s;
 }
 
-.delete-mood-btn {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 14px;
-  height: 14px;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  color: var(--text-dim);
-  background: none;
-  border: none;
-  cursor: pointer;
-  opacity: 0.3;
-  transition: all 0.2s;
-  line-height: 1;
-  z-index: 5;
+.day-slot:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border-color: var(--primary);
 }
 
-.delete-mood-btn:hover {
-  opacity: 1;
-  color: var(--accent-red);
-  transform: scale(1.2);
-}
+/* 기존 플로팅 기분 위젯 관련 스타일 삭제 */
+.mood-widget, .mood-icons, .mood-btn, .mood-btn.selected { display: none; }
 
-.day-slot span {
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  font-weight: 600;
-}
-
-.day-mood {
-  font-size: 1.4rem;
-}
-
-.mood-btn.selected {
-  background: rgba(139, 92, 246, 0.2);
-  box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+/* 반응형 수정 */
+@media (max-width: 600px) {
+  .pomodoro-widget-inline #timer { font-size: 2.5rem; }
+  .mood-option-btn { font-size: 2rem; padding: 0.6rem; }
+  h1 { margin-top: 1rem; } /* 위젯이 상단에서 사라졌으므로 다시 조정 */
 }
