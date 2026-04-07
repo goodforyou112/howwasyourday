@@ -270,56 +270,52 @@ input[type="text"]:focus {
   border-color: var(--primary);
 }
 
-/* 뽀모도로 플로팅 위젯 (밝은 테마) */
+/* 뽀모도로 플로팅 위젯 (상단 좌측 배치 및 축소) */
 .pomodoro-widget {
   position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  width: 180px;
-  background: white;
-  border: 1px solid rgba(139, 92, 246, 0.2);
-  border-radius: 20px;
-  padding: 1.2rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  top: 1.2rem;
+  left: 1rem;
+  width: 120px;
+  background: rgba(255, 255, 255, 0.85); /* 투명도 증가 */
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 16px;
+  padding: 0.6rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 100;
+  z-index: 1000;
   animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-@keyframes bounceIn {
-  from { opacity: 0; transform: translateY(50px) scale(0.8); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
 .pomodoro-widget #timer {
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
   font-variant-numeric: tabular-nums;
 }
 
 .pomodoro-widget .status {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: var(--text-dim);
-  margin-bottom: 0.8rem;
-  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
 }
 
 .widget-controls {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.3rem;
 }
 
 .widget-btn {
-  background: rgba(139, 92, 246, 0.05);
+  background: rgba(139, 92, 246, 0.1);
   border: 1px solid rgba(139, 92, 246, 0.2);
   color: var(--primary);
-  padding: 0.3rem 0.6rem;
-  border-radius: 8px;
-  font-size: 0.7rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+  font-size: 0.6rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
@@ -350,17 +346,34 @@ input[type="text"]:focus {
 /* 초소형 모바일 기기 최적화 (600px 이하) */
 @media (max-width: 600px) {
   body {
-    padding: 1rem;
+    padding: 1rem 0.5rem;
+  }
+  
+  /* 위젯 모바일에서 상단 간격 미세 조정 */
+  .pomodoro-widget, .mood-widget {
+    top: 0.8rem;
+  }
+  
+  .pomodoro-widget {
+    left: 0.5rem;
+    width: 100px;
+  }
+  
+  .mood-widget {
+    right: 0.5rem;
   }
 
   h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    margin-top: 3.5rem; /* 위젯과 겹치지 않게 여백 추가 */
   }
 
   .header-info {
-    font-size: 0.8rem;
-    flex-direction: column;
-    gap: 0.3rem;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+    flex-direction: row; /* 다시 가로로 */
+    justify-content: center;
+    gap: 1rem;
   }
 
   input[type="text"] {
@@ -420,43 +433,44 @@ input[type="text"]:focus {
   }
 }
 
-/* 기분 플로팅 위젯 (오른쪽 하단) */
+/* 기분 플로팅 위젯 (상단 우측 배치 및 축소) */
 .mood-widget {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background: white;
-  border: 1px solid rgba(139, 92, 246, 0.2);
-  border-radius: 20px;
-  padding: 1.2rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  top: 1.2rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 16px;
+  padding: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 100;
+  z-index: 1000;
   animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .mood-widget .status {
-  font-size: 0.75rem;
+  font-size: 0.6rem;
   color: var(--text-dim);
-  margin-bottom: 0.8rem;
-  letter-spacing: 1px;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.5px;
 }
 
 .mood-icons {
   display: flex;
-  flex-direction: column; /* 세로로 변경 */
-  gap: 0.5rem;
+  flex-direction: row; /* 다시 가로로 변경 (슬림하게) */
+  gap: 0.3rem;
 }
 
 .mood-btn {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.2s;
-  padding: 0.3rem;
+  padding: 0.2rem;
   border-radius: 50%;
 }
 
