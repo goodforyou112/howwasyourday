@@ -48,7 +48,7 @@ body {
 /* 상단 입력 영역 */
 .header-input-section {
   width: 100%;
-  max-width: 800px;
+  max-width: 650px; /* 800px -> 650px 축소 */
   margin: 0 auto;
   text-align: center;
   animation: fadeInDown 0.8s ease-out;
@@ -73,7 +73,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 800px;
+  max-width: 650px; /* 800px -> 650px 축소 */
   margin: 0 auto 1.5rem;
   padding: 0 1rem;
   color: var(--text-dim);
@@ -273,7 +273,7 @@ input[type="text"]:focus {
 /* 뽀모도로 타이머 (인라인 - 가로 바 디자인) */
 .pomodoro-widget-inline {
   width: 100%;
-  max-width: 800px;
+  max-width: 650px;
   margin: 0 auto;
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
@@ -282,9 +282,9 @@ input[type="text"]:focus {
   padding: 1rem 2rem;
   box-shadow: var(--shadow-lg);
   display: flex;
-  flex-direction: row; /* 가로 배치 */
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between; /* 양쪽 끝으로 */
+  justify-content: space-between;
   gap: 1.5rem;
   animation: fadeIn 0.8s ease-out;
 }
